@@ -66,7 +66,7 @@
     $("cond").textContent = item.cond;
     $("seller").textContent = "@" + item.seller;
     $("seller").href = item.sellerUrl;
-    $("listing").href = item.url;
+    $("listing").href = listingHref(item.url);
     if (fresh) { photoIdx = 0; showPhoto(); $("guess").value = ""; $("msg").textContent = ""; }
     renderGuesses();
     renderResult();
@@ -195,7 +195,29 @@
   $("practice").onclick = loadPractice;
   $("back-daily").onclick = loadDaily;
 
-  // --- footer + ads ---
+  // --- money: affiliate links, sponsor spot, tips, ads ---
+  function listingHref(url) {
+    return CONFIG.affiliateTemplate ? CONFIG.affiliateTemplate.replace("{url}", encodeURIComponent(url)) : url;
+  }
+  if (CONFIG.affiliateTemplate) {
+    $("affiliate-note").hidden = false;
+    $("listing").rel = "sponsored noopener";
+  }
+
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+  const sp = CONFIG.sponsor || {};
+  const box = $("sponsor");
+  if (sp.name) {
+    box.innerHTML = `<span class="sp-label">Sponsor</span><a href="${esc(sp.url)}" target="_blank" rel="sponsored noopener"><strong>${esc(sp.name)}</strong>${sp.text ? ` <span>${esc(sp.text)}</span>` : ""}</a>`;
+  } else {
+    const contact = sp.contact || `https://github.com/${CONFIG.repo}/issues/new?title=Sponsorship%20inquiry`;
+    box.classList.add("open");
+    box.innerHTML = `<span class="sp-label">Sponsor</span><a href="${esc(contact)}" target="_blank" rel="noopener">Run a shop or brand? <strong>Sponsor this spot.</strong></a>`;
+  }
+  box.hidden = false;
+
+  if (CONFIG.tipUrl) { $("tip").href = CONFIG.tipUrl; $("tip").hidden = false; }
+
   $("takedown").href = `https://github.com/${CONFIG.repo}/issues/new?title=Photo%20removal%20request`;
   const ads = CONFIG.adsense;
   if (ads && ads.client) {
