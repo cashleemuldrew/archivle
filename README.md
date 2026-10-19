@@ -2,7 +2,7 @@
 
 A daily price-guessing game for archive fashion. Each day shows one item from Grailed's Staff Picks. You get six guesses, and a guess within $100 of the listed price wins.
 
-Play: https://cashleemuldrew.github.io/archivle/
+Play: https://archivle.pages.dev/
 
 ## Files
 
@@ -40,3 +40,11 @@ The ad spaces stay hidden until `config.js` has a publisher ID. AdSense may reje
 Photos are embedded from Grailed's image server. They are not copied into this repo. They belong to their sellers. Every item credits and links its seller and listing. If a seller asks for removal, delete that item from `items.js`.
 
 Not affiliated with Grailed.
+
+## Deploying
+
+The site is hosted on Cloudflare Pages as the `archivle` project. To publish changes, from this folder run:
+
+```bash
+npx wrangler pages deploy . --project-name archivle --branch main
+```
