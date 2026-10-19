@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Archivle</title>
+  <meta name="description" content="A daily game: guess the price of an archive fashion piece in six tries.">
+  <meta name="referrer" content="no-referrer">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@600;800&family=Karla:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="style.css">
+  <script src="config.js"></script>
+</head>
+<body>
+  <header class="top">
+    <div class="top-inner">
+      <button class="icon-btn" id="help-btn" aria-label="How to play">?</button>
+      <div class="brand">
+        <h1>Archivle</h1>
+        <p class="issue" id="issue">No. 1</p>
+      </div>
+      <button class="icon-btn" id="stats-btn" aria-label="Statistics">
+        <svg viewBox="0 0 20 20" width="18" height="18" aria-hidden="true"><rect x="2" y="10" width="4" height="8" fill="currentColor"/><rect x="8" y="5" width="4" height="13" fill="currentColor"/><rect x="14" y="2" width="4" height="16" fill="currentColor"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <div class="ad-slot" id="ad-top" hidden></div>
+
+  <main class="wrap">
+    <p class="mode-banner" id="mode-banner" hidden>Practice round. This doesn't count toward your stats. <button class="link-btn" id="back-daily">Back to today's item</button></p>
+
+    <section class="tag" aria-label="Today's item">
+      <div class="photo-frame">
+        <img id="photo" alt="" referrerpolicy="no-referrer">
+        <button class="nav prev" id="prev" aria-label="Previous photo">‹</button>
+        <button class="nav next" id="next" aria-label="Next photo">›</button>
+        <div class="dots" id="dots"></div>
+      </div>
+
+      <div class="tag-body">
+        <p class="brand-name" id="brand"></p>
+        <h2 class="title" id="title"></h2>
+        <dl class="specs">
+          <div><dt>Size</dt><dd id="size"></dd></div>
+          <div><dt>Condition</dt><dd id="cond"></dd></div>
+        </dl>
+        <p class="credit">
+          Listed by <a id="seller" target="_blank" rel="noopener"></a> on Grailed.
+          <a id="listing" target="_blank" rel="noopener">View listing ↗</a>
+          <span class="spoil">(shows the price)</span>
+        </p>
+      </div>
+    </section>
+
+    <ol class="guesses" id="guesses" aria-label="Your guesses"></ol>
+
+    <form class="guess-form" id="form" autocomplete="off">
+      <label class="sr" for="guess">Your price guess in dollars</label>
+      <div class="input-wrap">
+        <span class="dollar">$</span>
+        <input id="guess" inputmode="decimal" placeholder="Enter a price" maxlength="9">
+      </div>
+      <button type="submit" id="submit">Guess</button>
+    </form>
+    <p class="msg" id="msg" role="status"></p>
+
+    <section class="result" id="result" hidden>
+      <p class="result-head" id="result-head"></p>
+      <p class="result-price"><span>Listed at</span> <strong id="answer"></strong></p>
+      <div class="result-actions">
+        <button id="share">Copy result</button>
+        <button id="practice" class="ghost">Play a practice round</button>
+      </div>
+      <p class="next-in" id="next-in"></p>
+    </section>
+  </main>
+
+  <div class="ad-slot" id="ad-bottom" hidden></div>
+
+  <footer class="foot">
+    <p>Prices are the seller's asking price on Grailed when the item was added. Items come from Grailed's Staff Picks.</p>
+    <p>Not affiliated with Grailed. Photos belong to their sellers and load directly from Grailed. Want a photo removed? <a id="takedown" target="_blank" rel="noopener">Open an issue on GitHub</a> and it will come down.</p>
+  </footer>
+
+  <dialog id="help">
+    <form method="dialog">
+      <h3>How to play</h3>
+      <p>Guess the price of today's item in six tries. There's a new item every day at midnight.</p>
+      <ul class="legend">
+        <li><span class="chip hit">$</span> Within $100 of the price. You win.</li>
+        <li><span class="chip near">$</span> Within 25% of the price.</li>
+        <li><span class="chip miss">$</span> More than 25% off.</li>
+      </ul>
+      <p>The arrow tells you whether the real price is higher ↑ or lower ↓ than your guess.</p>
+      <button class="close">Got it</button>
+    </form>
+  </dialog>
+
+  <dialog id="stats">
+    <form method="dialog">
+      <h3>Statistics</h3>
+      <div class="stat-row" id="stat-row"></div>
+      <h4>Guess distribution</h4>
+      <div class="dist" id="dist"></div>
+      <button class="close">Close</button>
+    </form>
+  </dialog>
+
+  <script src="items.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
