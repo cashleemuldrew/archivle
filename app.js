@@ -220,11 +220,13 @@
 
   $("takedown").href = `https://github.com/${CONFIG.repo}/issues/new?title=Photo%20removal%20request`;
   const ads = CONFIG.adsense;
-  if (ads && ads.client) {
+  if (ads && ads.client && !document.querySelector('script[src*="adsbygoogle.js"]')) {
     const s = document.createElement("script");
     s.async = true; s.crossOrigin = "anonymous";
     s.src = `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${encodeURIComponent(ads.client)}`;
     document.head.appendChild(s);
+  }
+  if (ads && ads.client) {
     [["ad-top", ads.slotTop], ["ad-bottom", ads.slotBottom]].forEach(([id, slot]) => {
       if (!slot) return;
       const box = $(id);

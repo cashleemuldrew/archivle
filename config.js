@@ -26,7 +26,7 @@ const CONFIG = {
   // After AdSense approves the site, paste your publisher ID ("ca-pub-...")
   // and the ad unit slot IDs from your AdSense dashboard.
   adsense: {
-    client: "",
+    client: "ca-pub-1807981197731992",
     slotTop: "",
     slotBottom: "",
   },
