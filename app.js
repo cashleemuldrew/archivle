@@ -2,6 +2,8 @@
   const MAX_GUESSES = 6;
   // green: within $5 for items under $100, within $50 for everything else
   const winRange = price => (price < 100 ? 5 : 50);
+  // yellow: within 25%, or twice the green range if that's bigger ($100 for items $100+)
+  const nearRange = price => Math.max(price * NEAR_PCT, winRange(price) * 2);
   const NEAR_PCT = 0.25;     // yellow: within 25%
   const START = Date.UTC(2026, 9, 19); // No. 1 = Oct 19, 2026
   const DAY = 86400000;
@@ -52,7 +54,7 @@
 
   function grade(g, price) {
     const diff = Math.abs(g - price);
-    const kind = diff <= winRange(price) ? "hit" : diff <= price * NEAR_PCT ? "near" : "miss";
+    const kind = diff <= winRange(price) ? "hit" : diff <= nearRange(price) ? "near" : "miss";
     const dir = kind === "hit" ? "✓" : g < price ? "↑" : "↓";
     return { kind, dir };
   }
