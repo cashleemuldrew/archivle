@@ -1,6 +1,6 @@
 # Archivle
 
-A daily price-guessing game for archive fashion and streetwear. Each day shows one item from Grailed's Staff Picks or a popular streetwear brand. You get six guesses, and a guess within $50 of the listed price wins (within $5 for items under $100).
+A daily price-guessing game for archive fashion and streetwear. Each day shows one item from Grailed's Staff Picks or a popular streetwear brand. You get six guesses, and a guess within $15 of the listed price wins (within $5 for items under $100).
 
 Play: https://archivle.pages.dev/
 
