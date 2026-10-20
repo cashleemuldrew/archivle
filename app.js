@@ -1,7 +1,7 @@
 (() => {
   const MAX_GUESSES = 6;
   // green: a fixed dollar amount that depends on the price tier
-  const winRange = price => (price < 100 ? 5 : price < 500 ? 15 : price < 1000 ? 25 : 100);
+  const winRange = price => (price < 100 ? 5 : price < 500 ? 15 : price < 1000 ? 25 : 50);
   // yellow: within 25%; for items $100+, within $100 if that's bigger
   const nearRange = price => (price < 100 ? price * NEAR_PCT : Math.max(price * NEAR_PCT, 100));
   const NEAR_PCT = 0.25;     // yellow: within 25%
