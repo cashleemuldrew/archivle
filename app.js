@@ -1,6 +1,6 @@
 (() => {
   const MAX_GUESSES = 6;
-  const WIN_DOLLARS = 100;   // green: within $100
+  const WIN_DOLLARS = 50;    // green: within $50
   const NEAR_PCT = 0.25;     // yellow: within 25%
   const START = Date.UTC(2026, 9, 19); // No. 1 = Oct 19, 2026
   const DAY = 86400000;
@@ -35,7 +35,8 @@
   function loadDaily() {
     mode = "daily";
     item = ITEMS[dailyIndex];
-    game = store.get(`archivle-${dayNo}`, { guesses: [], done: false, won: false });
+    game = store.get(`archivle-${dayNo}`, null);
+    if (!game || game.itemId !== item.id) game = { itemId: item.id, guesses: [], done: false, won: false };
     render(true);
   }
   function loadPractice() {
