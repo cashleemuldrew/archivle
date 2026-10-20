@@ -68,6 +68,9 @@
     $("title").textContent = item.title;
     $("size").textContent = item.size;
     $("cond").textContent = item.cond;
+    $("auth").textContent = item.verified ? "✓ Verified by Grailed" : "Not verified";
+    $("auth").className = "auth " + (item.verified ? "yes" : "no");
+    $("auth").title = item.verified ? "Grailed's team or a trusted partner checked this item." : "Grailed hasn't checked this item. It may still be authentic.";
     $("seller").textContent = "@" + item.seller;
     $("seller").href = item.sellerUrl;
     $("listing").href = listingHref(item.url);

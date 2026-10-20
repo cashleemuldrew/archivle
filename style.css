@@ -121,6 +121,9 @@ button { font: inherit; cursor: pointer; }
 .specs div { display: flex; flex-direction: column; }
 .specs dt { font: 500 10px/1.4 var(--mono); letter-spacing: 0.14em; text-transform: uppercase; opacity: .7; }
 .specs dd { margin: 0; font-weight: 700; }
+.auth { display: inline-block; font: 600 12px/1 var(--mono); padding: 4px 7px; border-radius: 3px; margin-top: 2px; }
+.auth.yes { background: var(--hit); color: var(--on-chip); }
+.auth.no { border: 1px dashed color-mix(in srgb, var(--tag-ink) 45%, transparent); }
 .credit { margin: 6px 0 0; font-size: 14px; border-top: 1px dashed color-mix(in srgb, var(--tag-ink) 35%, transparent); padding-top: 10px; }
 .credit a { color: inherit; font-weight: 700; }
 .spoil { opacity: .65; font-size: 12px; }
